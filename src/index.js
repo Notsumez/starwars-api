@@ -24,8 +24,9 @@ app.post('/', async (req, res) => {
     res.send(film)
 })
 
-app.get('/', (req, res) => {
-    res.send('teste')
+app.get('/', async (req, res) => {
+    const films = await Film.find()
+    res.send(films)
 })
 
 app.listen(port, () => {
