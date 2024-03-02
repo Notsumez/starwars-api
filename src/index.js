@@ -20,8 +20,13 @@ app.post('/', async (req, res) => {
         trailer_url: req.body.trailer_url
     })
 
-    film.save()
-    res.send(film)
+    await film.save()
+    return res.send(film)
+})
+
+app.delete("/:id", async (req, res) => {
+    const film = await Film.findByIdAndDelete(req.params.id)
+    return res.send(film)
 })
 
 app.get('/', async (req, res) => {
