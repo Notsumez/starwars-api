@@ -29,6 +29,16 @@ app.delete("/:id", async (req, res) => {
     return res.send(film)
 })
 
+app.put('/:id', async (req, res) => {
+    const film = await Film.findByIdAndUpdate(req.params.id, { 
+        title: req.body.title,
+        description: req.body.description,
+        image_url: req.body.image_url,
+        trailer_url: req.body.trailer_url
+    })
+    return res.send(film)
+})
+
 app.get('/', async (req, res) => {
     const films = await Film.find()
     res.send(films)
